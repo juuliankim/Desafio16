@@ -1,0 +1,23 @@
+use ecommerce
+db.mensajes.insert([{autor:"Julian", mensaje:"hola"}, {autor:"Juan", mensaje:"hola, como estas?"}, {autor:"Maria", mensaje:"hola"}, {autor:"Pedro", mensaje:"hola"}, {autor:"Florencia", mensaje:"hola"}, {autor:"Emanuel", mensaje:"hola"}, {autor:"Daiana", mensaje:"hola"}, {autor:"Tomas", mensaje:"hola"}, {autor:"Claudia", mensaje:"hola"}, {autor:"Maxi", mensaje:"hola"}])
+db.productos.insert([{nombre:"Remera", precio:500, thumbnail:"remera.com"}, {nombre:"Vestido", precio:1500, thumbnail:"vestido.com"}, {nombre:"Pantalon", precio:4400, thumbnail:"pantalon.com"}, {nombre:"Jean", precio:4900, thumbnail:"jean.com"}, {nombre:"Buzo", precio:3000, thumbnail:"buzo.com"}, {nombre:"Campera", precio:3500, thumbnail:"campera.com"}, {nombre:"Saco", precio:4800, thumbnail:"saco.com"}, {nombre:"Pulsera", precio:250, thumbnail:"pulsera.com"}, {nombre:"Musculosa", precio:390, thumbnail:"musculosa.com"}, {nombre:"Gorra", precio:700, thumbnail:"gorra.com"}])
+db.mensajes.find()
+db.productos.find()
+db.mensaje.count()
+db.productos.count()
+db.productos.insertOne({nombre:"Pollera", precio:1100, thumbnail:"pollera.com"})
+db.productos.find({precio: {$lte: 1000}})
+db.productos.find({$and: [{precio: {$gte: 1000}}, {precio: {$lte: 3000}}]})
+db.productos.find({precio: {$gt: 3000}})
+db.productos.find().skip(2).limit(1).sort({precio:1})
+db.productos.update({precio: {$gte: 100}}, {$set: {stock:100}},{multi:true})
+db.productos.update({precio: {$gte: 4000}}, {$set: {stock:0}},{multi:true})
+db.productos.deleteMany({precio: {$lt: 1000}})
+use admin
+db.createUser({
+    user: 'pepe',
+    pwd: 'asd456',
+    roles: [
+        {role: 'read', db: 'ecommerce'}
+    ]
+})
